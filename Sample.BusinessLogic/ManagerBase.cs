@@ -5,10 +5,11 @@ namespace Sample.BusinessLogic
 {
     public class ManagerBase
     {
-        protected ILog Log { get; }
-
         protected SampleDataContext DataContext;
 
-        protected ManagerBase(SampleDataContext dataContext) => DataContext = dataContext;
+        protected ManagerBase(SampleDataContext dataContext)
+        {
+            DataContext = dataContext;
+        }
     }
 }

@@ -7,15 +7,18 @@ namespace Sample.DatabaseEF
     public class SampleDataContext : DbContext
     {
         public SampleDataContext()
-            : base("DataContext")
+            : base("name=DataContext")
         {
             Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<DeviceMovement> DeviceMovements { get; set; }
 
+        public DbSet<Device> Devices { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<SampleDataContext>(null);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<DecimalPropertyConvention>();

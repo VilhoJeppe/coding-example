@@ -1,14 +1,14 @@
-﻿using System.Runtime.Serialization;
-
-namespace Sample.BusinessLogicInterface.Dto
+﻿namespace Sample.BusinessLogicInterface.Dto
 {
-    [DataContract]
+    
     public class DeviceMovementDto : BaseDto
     {
-        [DataMember]
+        public string DeviceName { get; set; }
+
         public CoordinateDto StartCoordinate { get; set; }
         
-        [DataMember]
         public CoordinateDto EndCoordinate { get; set; }
+
+        public decimal AverageVelocityMetersPerSecond { get; set; }
     }
 }

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Generics\EntityBase.cs" />
     <Compile Include="Objects\Coordinate.cs" />
+    <Compile Include="Objects\Device.cs" />
     <Compile Include="Objects\DeviceMovement.cs" />
     <Compile Include="SampleDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

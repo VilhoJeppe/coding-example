@@ -39,15 +39,26 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Topshelf.4.0.3\lib\net452\Topshelf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleClientSvc.cs" />
+    <Compile Include="MovementMapper.cs" />
+    <Compile Include="PersistingSvc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample.BusinessLogicInterface\Sample.BusinessLogicInterface.csproj">
       <Project>{2308DBFF-762A-4F8A-9096-B61F6469592D}</Project>
       <Name>Sample.BusinessLogicInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sample.ServiceInterface\Sample.ServiceInterface.csproj">
+      <Project>{3E8E66F4-1C7D-44F0-9883-8B6D12ED1EB9}</Project>
+      <Name>Sample.ServiceInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
