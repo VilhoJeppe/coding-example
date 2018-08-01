@@ -6,18 +6,17 @@ using Sample.DatabaseEF.Objects;
 
 namespace Sample.BusinessLogic
 {
-    public class MovementManager : IMovementManager
+    public class MovementManager : ManagerBase, IMovementManager
     {
-        private readonly SampleDataContext _sampleDataContext;
-
         public MovementManager(SampleDataContext sampleDataContext)
+            : base(sampleDataContext)
         {
-            _sampleDataContext = sampleDataContext;
         }
+        
 
         public void LogMovement(DeviceMovementDto movement)
         {
-            var device = _sampleDataContext.Devices.FirstOrDefault(d => d.DeviceName == movement.DeviceName);
+            var device = DataContext.Devices.FirstOrDefault(d => d.DeviceName == movement.DeviceName);
 
             //if device is notifying movement for the first time, persist device to database
             if (device == null)
@@ -27,13 +26,13 @@ namespace Sample.BusinessLogic
                     DeviceName = movement.DeviceName
                 };
 
-                _sampleDataContext.Devices.Add(device);
+                DataContext.Devices.Add(device);
             }
 
             //save changes just for sure, maybe not needed
-            var deviceId = _sampleDataContext.SaveChanges();
+            var deviceId = DataContext.SaveChanges();
 
-            device = _sampleDataContext.Devices.Find(deviceId);
+            device = DataContext.Devices.Find(deviceId);
 
             //Convert dto to db entity
             var domainObject = movement.MapDomainObject();
@@ -42,15 +41,15 @@ namespace Sample.BusinessLogic
             domainObject.Device = device;
 
             //persist movement
-             _sampleDataContext.DeviceMovements.Add(domainObject);
+            DataContext.DeviceMovements.Add(domainObject);
 
             //Save changes
-            _sampleDataContext.SaveChanges();
+            DataContext.SaveChanges();
         }
 
         public DeviceMovementDto[] GetMovements()
         {
-            var movements = _sampleDataContext.DeviceMovements.ToList();
+            var movements = DataContext.DeviceMovements.ToList();
             return movements.Select(s => s.MapDto()).ToArray();
         }
     }
