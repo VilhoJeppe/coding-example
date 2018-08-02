@@ -1,4 +1,5 @@
 ﻿using Sample.BusinessLogicInterface.Dto;
+using Sample.DeviceInterface;
 using Sample.ServiceInterface;
 
 namespace Sample.BusinessLogic
@@ -19,7 +20,8 @@ namespace Sample.BusinessLogic
                 DeviceName = dataContract.DeviceName,
                 StartCoordinate = dataContract.StartCoordinate.MapDto(),
                 EndCoordinate = dataContract.EndCoordinate.MapDto(),
-                AverageVelocityMetersPerSecond = dataContract.AverageVelocityMetersPerSecond
+                AverageVelocityMetersPerSecond = dataContract.AverageVelocityMetersPerSecond,
+                TimeRecorded = dataContract.TimeRecorded
             };
 
         public static DeviceMovementDc MapDataContract(this DeviceMovementDto dto)
@@ -28,7 +30,8 @@ namespace Sample.BusinessLogic
                 DeviceName = dto.DeviceName,
                 StartCoordinate = dto.StartCoordinate.MapDataContract(),
                 EndCoordinate = dto.EndCoordinate.MapDataContract(),
-                AverageVelocityMetersPerSecond = dto.AverageVelocityMetersPerSecond
+                AverageVelocityMetersPerSecond = dto.AverageVelocityMetersPerSecond,
+                TimeRecorded = dto.TimeRecorded
             };
 
         public static CoordinateDc MapDataContract(this CoordinateDto dto)
@@ -37,6 +40,24 @@ namespace Sample.BusinessLogic
                 X = dto.X,
                 Y = dto.Y,
                 Z = dto.Z
+            };
+
+        public static CoordinateDc MapDataContract(this PlcDeviceCoordinate plcCoordinate)
+            => new CoordinateDc
+            {
+                X = plcCoordinate.X,
+                Y = plcCoordinate.Y,
+                Z = plcCoordinate.Z
+            };
+
+        public static DeviceMovementDc MapDataContract(this PlcDeviceMovementArgs plcMovement)
+            => new DeviceMovementDc
+            {
+                DeviceName = plcMovement.DeviceName,
+                StartCoordinate = plcMovement.StartCoordinate.MapDataContract(),
+                EndCoordinate = plcMovement.EndCoordinate.MapDataContract(),
+                AverageVelocityMetersPerSecond = plcMovement.AverageVelocityMetersPerSecond,
+                TimeRecorded = plcMovement.TimeRecorded
             };
     }
 }

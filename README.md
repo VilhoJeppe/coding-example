@@ -35,11 +35,11 @@ Sample.ServiceInterface.
 Sample.Server
 -Handling IoC with Ninject to server and hosting the service in Console application
 
-Sample.Client
+Sample.Device
 -Maybe this will end up representing a mine loader device's WCF-service which will send movement events to persist to server on a certain time interval. 
 -PLC runs on propably 1-2 ms frequency so could end up creating huge load to store to database
 
-Sample.XXX
+Sample.DeviceInterface
 -Not implemented
 -Will be simulating PLC-interface.
--Will be sending .Net Events of movements to Sample.Client
+-Will be sending .Net Events of movements to Sample.Client. These events will then be converted into notiifcations and sent to PersistingSvc

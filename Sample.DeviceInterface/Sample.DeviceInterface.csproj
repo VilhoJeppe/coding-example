@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB1E10BA-36E7-4FDD-B842-F5C39C557510}</ProjectGuid>
+    <ProjectGuid>{E3BFC237-7A7D-47CA-BCBC-A689616FB39A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample.Services</RootNamespace>
-    <AssemblyName>Sample.Services</AssemblyName>
+    <RootNamespace>Sample.DeviceInterface</RootNamespace>
+    <AssemblyName>Sample.DeviceInterface</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,39 +32,18 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Topshelf.4.0.3\lib\net452\Topshelf.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceService.cs" />
-    <Compile Include="MovementMapper.cs" />
-    <Compile Include="PersistingSvc.cs" />
+    <Compile Include="PlcDeviceCoordinate.cs" />
+    <Compile Include="PlcDeviceMovementArgs.cs" />
+    <Compile Include="IDeviceInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sample.BusinessLogicInterface\Sample.BusinessLogicInterface.csproj">
-      <Project>{2308DBFF-762A-4F8A-9096-B61F6469592D}</Project>
-      <Name>Sample.BusinessLogicInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sample.DeviceInterface\Sample.DeviceInterface.csproj">
-      <Project>{E3BFC237-7A7D-47CA-BCBC-A689616FB39A}</Project>
-      <Name>Sample.DeviceInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sample.ServiceInterface\Sample.ServiceInterface.csproj">
-      <Project>{3E8E66F4-1C7D-44F0-9883-8B6D12ED1EB9}</Project>
-      <Name>Sample.ServiceInterface</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
