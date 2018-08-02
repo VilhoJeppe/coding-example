@@ -42,3 +42,4 @@ Sample.Client
 Sample.XXX
 -Not implemented
 -Will be simulating PLC-interface.
+-Will be sending .Net Events of movements to Sample.Client

@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.BusinessLogic", "Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Server", "Sample.Server\Sample.Server.csproj", "{6319E817-AA96-4EC6-BF87-93920D5D57A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Client", "Sample.Client\Sample.Client.csproj", "{A81F188A-0710-45E5-BAAC-95203344DFE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Device", "Sample.Client\Sample.Device.csproj", "{A81F188A-0710-45E5-BAAC-95203344DFE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

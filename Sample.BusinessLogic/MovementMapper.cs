@@ -19,7 +19,8 @@ namespace Sample.BusinessLogic
                 DeviceName = domainObject.DeviceName,
                 StartCoordinate = domainObject.StartCoordinate.MapDto(),
                 EndCoordinate = domainObject.EndCoordinate.MapDto(),
-                AverageVelocityMetersPerSecond = domainObject.AverageVelocityMetersPerSecond
+                AverageVelocityMetersPerSecond = domainObject.AverageVelocityMetersPerSecond,
+                TimeRecorded = domainObject.TimeRecorded
             };
 
         public static DeviceMovement MapDomainObject(this DeviceMovementDto dto)
@@ -28,7 +29,8 @@ namespace Sample.BusinessLogic
                 DeviceName = dto.DeviceName,
                 StartCoordinate = dto.StartCoordinate.MapDomainObject(),
                 EndCoordinate = dto.EndCoordinate.MapDomainObject(),
-                AverageVelocityMetersPerSecond = dto.AverageVelocityMetersPerSecond
+                AverageVelocityMetersPerSecond = dto.AverageVelocityMetersPerSecond,
+                TimeRecorded = dto.TimeRecorded
             };
 
         public static Coordinate MapDomainObject(this CoordinateDto dto)

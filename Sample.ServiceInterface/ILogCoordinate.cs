@@ -8,8 +8,5 @@ namespace Sample.ServiceInterface
     {
         [OperationContract]
         void LogMovement(DeviceMovementDc movement);
-
-        [OperationContract]
-        DeviceMovementDc[] GetMovements();
     }
 }

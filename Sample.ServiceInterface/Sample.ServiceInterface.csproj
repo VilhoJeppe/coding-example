@@ -45,6 +45,7 @@
     <Compile Include="BaseDc.cs" />
     <Compile Include="CoordinateDc.cs" />
     <Compile Include="DeviceMovementDc.cs" />
+    <Compile Include="ICoordinateProvider.cs" />
     <Compile Include="ILogCoordinate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

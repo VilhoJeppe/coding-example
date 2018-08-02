@@ -11,12 +11,19 @@ using Timer = System.Timers.Timer;
 
 namespace Sample.Services
 {
+    //Multiple thread access to service and make WCF quotas larger. 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, MaxItemsInObjectGraph = int.MaxValue)]
-    public class PersistingSvc : ServiceControl, ILogCoordinate
+    public class PersistingSvc : ServiceControl, ILogCoordinate, ICoordinateProvider
     {
+        //Injected with Ninject
         private readonly IMovementManager _movementManager;
+
+        //Timer for poller method
         private Timer _timer;
+        
         private readonly object _lock;
+
+        //Internal collection of movements
         private readonly List<DeviceMovementDc> _movements;
 
         public PersistingSvc(IMovementManager movementManager)
@@ -38,18 +45,15 @@ namespace Sample.Services
            _timer.Start();
         }
 
+        //Poller method called evey 5 seconds.
         private void Speculate()
         {
             Console.WriteLine("Later on ");
 
-            var ids = new List<int>();
-
+            //Lock internal collection
             lock (_lock)
             {
-                foreach (var deviceMovementDc in _movements)
-                {
-                    _movementManager.LogMovement(deviceMovementDc.MapDto());
-                }
+               _movementManager.LogMovements(_movements.Select(m => m.MapDto()).ToList());
 
                 _movements.Clear();
             }
@@ -59,6 +63,7 @@ namespace Sample.Services
 
         public void LogMovement(DeviceMovementDc movement)
         {
+            //Always try-catch on WCF calls on both receiving and sending end 
             try
             {
                 lock (_lock)
@@ -74,11 +79,11 @@ namespace Sample.Services
             }
         }
 
-        public DeviceMovementDc[] GetMovements()
+        public DeviceMovementDc[] GetLastMovementsForDevice(string deviceName, int movementCount)
         {
             try
             {
-                var movements = _movementManager.GetMovements();
+                var movements = _movementManager.GetLastMovementsForDevice(deviceName, movementCount);
                 return movements.Select(s => s.MapDataContract()).ToArray();
             }
             catch (Exception e)
@@ -94,8 +99,13 @@ namespace Sample.Services
 
         public bool Start(HostControl hostControl)
         {
+            
             if (_movementManager == null)
                 throw new NullReferenceException($"IMovementManager not set.");
+
+            //This is only here so that SampleDataContextInitializer creates the database on startup. Did not have time to investigate how to do this with configuration,
+            //which would be the right way
+            var movements = _movementManager.GetLastMovementsForDevice("Loader1", 200);
             
             return true;
         }

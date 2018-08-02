@@ -1,11 +1,12 @@
-﻿using Sample.BusinessLogicInterface.Dto;
+﻿using System.Collections.Generic;
+using Sample.BusinessLogicInterface.Dto;
 
 namespace Sample.BusinessLogicInterface.Interface
 {
     public interface IMovementManager
     {
-        void LogMovement(DeviceMovementDto movement);
+        void LogMovements(List<DeviceMovementDto> movement);
 
-        DeviceMovementDto[] GetMovements();
+        List<DeviceMovementDto> GetLastMovementsForDevice(string deviceName, int movementCount);
     }
 }

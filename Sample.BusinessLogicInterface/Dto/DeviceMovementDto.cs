@@ -1,4 +1,6 @@
-﻿namespace Sample.BusinessLogicInterface.Dto
+﻿using System;
+
+namespace Sample.BusinessLogicInterface.Dto
 {
     
     public class DeviceMovementDto : BaseDto
@@ -10,5 +12,7 @@
         public CoordinateDto EndCoordinate { get; set; }
 
         public decimal AverageVelocityMetersPerSecond { get; set; }
+
+        public DateTime TimeRecorded { get; set; }
     }
 }

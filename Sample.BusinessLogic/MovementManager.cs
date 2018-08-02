@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Sample.BusinessLogicInterface.Dto;
 using Sample.BusinessLogicInterface.Interface;
 using Sample.DatabaseEF;
@@ -12,7 +13,17 @@ namespace Sample.BusinessLogic
             : base(sampleDataContext)
         {
         }
-        
+
+        public void LogMovements(List<DeviceMovementDto> movements)
+        {
+            foreach (var deviceMovementDto in movements)
+            {
+                LogMovement(deviceMovementDto);
+
+                //Save changes
+                DataContext.SaveChanges();
+            }
+        }
 
         public void LogMovement(DeviceMovementDto movement)
         {
@@ -42,15 +53,15 @@ namespace Sample.BusinessLogic
 
             //persist movement
             DataContext.DeviceMovements.Add(domainObject);
-
-            //Save changes
-            DataContext.SaveChanges();
         }
 
-        public DeviceMovementDto[] GetMovements()
+        public List<DeviceMovementDto> GetLastMovementsForDevice(string deviceName, int movementCount)
         {
-            var movements = DataContext.DeviceMovements.ToList();
-            return movements.Select(s => s.MapDto()).ToArray();
+            var movements = DataContext.DeviceMovements.Where(m => m.DeviceName == deviceName)
+                .OrderBy(t => t.TimeRecorded)
+                .Take(movementCount).ToList();
+
+            return movements.Select(s => s.MapDto()).ToList();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Sample.DatabaseEF
             : base("name=DataContext")
         {
             Configuration.LazyLoadingEnabled = true;
+            Database.SetInitializer(new SampleDataContextInitializer());
         }
 
         public DbSet<DeviceMovement> DeviceMovements { get; set; }
