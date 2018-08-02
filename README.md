@@ -42,4 +42,4 @@ Sample.Device
 Sample.DeviceInterface
 -Not implemented
 -Will be simulating PLC-interface.
--Will be sending .Net Events of movements to Sample.Client. These events will then be converted into notiifcations and sent to PersistingSvc
+-Will be invoking .Net Events of movements to Sample.Device. These events will then be converted into notifications and sent to PersistingSvc

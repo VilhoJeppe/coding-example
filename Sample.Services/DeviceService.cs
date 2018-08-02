@@ -7,6 +7,7 @@ using Topshelf;
 
 namespace Sample.Services
 {
+    //WCF service purpose of which is to monitor the state of PLC and communicate to persisting service
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, MaxItemsInObjectGraph = int.MaxValue)]
     public class DeviceService : ServiceControl
     {
