@@ -1,6 +1,9 @@
 # coding-example
 This document explains some architectural choices regarging implementation of the solution
 
+To start solution: 
+-Change database connection string to match SQL server in your database. 
+-Set Sample.Server as Startup project and start debugging. Solution will create database automatically for now
 
 Solution has 7 visual studio projects
 Sample.DatabaseEF
